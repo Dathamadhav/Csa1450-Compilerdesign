@@ -1,0 +1,23 @@
+%{
+#include <stdio.h>
+%}
+
+%%
+^[aeiouAEIOU].* {
+    printf("Accepted: %s\n", yytext);
+}
+.|\n {
+    printf("Rejected: %s\n", yytext);
+}
+
+%%
+
+int yywrap(void) {
+    return 1;
+}
+
+int main(void) {
+    printf("Enter a string: ");
+    yylex();
+    return 0;
+}
